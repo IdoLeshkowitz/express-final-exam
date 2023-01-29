@@ -16,16 +16,19 @@ export default function validator(req: Request, res: Response, next: NextFunctio
                 return req.body;
             }
         }
-        const {weight, height, weightUnit, heightUnit} = getParamsFromRequest(req);
-        console.log(weight, height, weightUnit, heightUnit);
+        let {weight, height, weightUnit, heightUnit} = getParamsFromRequest(req);
+        weight = weight.toString()
+        height = height.toString()
+        weightUnit = weightUnit.toString()
+        heightUnit = heightUnit.toString()
         /*
         accepts received weight and returns true if it is a number
          */
-        const validateWeight= (weight : unknown)=> weight && !isNaN(Number(weight));
+        const validateWeight= (weight : unknown)=> weight && !isNaN(Number(weight.toString()));
         /*
         accepts received height and returns true if it is a number
          */
-        const validateHeight = (height: unknown) => height && !isNaN(Number(height));
+        const validateHeight = (height: unknown) => height && !isNaN(Number(height.toString()));
         /*
         accepts received weightUnit and returns true if it is a number between 0 and 2
          */
